@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 
-r= 100000 # r = resistencia den ohmios
+r= 100000 # r = resistencia en ohmios
 VB= 12 # VB = voltaje de la bateria en voltios
 C=500 * (10**-6) # C = es la capacidad en faradios
 Vc0= 1.25 # voltaje inicial del condesador en voltios
-e= 2.718 # constante de euler
+e= 2.718 # constante de Euler
 
 #calcular corriente de condensador en funcon del tiempo
 def VC(t):
@@ -15,7 +15,7 @@ def VC(t):
 
 
 #graficar
-fig, ax = plt.subplots()
+fig, Tension = plt.subplots()
 
 #funcion que calcula la corriente en el condensador en funcion del tiempo 
 def IC(t):
@@ -27,18 +27,17 @@ VCs = [VC(t) for t in Tiempo]
 
 
 
-ax.plot(Tiempo, VCs)
-ax.set_title('Curva de Tension', loc = "left", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
-ax.set_xlabel("Tiempo(s)")
-ax.set_ylabel("Voltaje del condensador (Vc)")
+Tension.plot(Tiempo, VCs)
+Tension.set_title('Curva de Tension', loc = "left", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':'tab:blue'})
+Tension.set_xlabel("Tiempo(s)")
+Tension.set_ylabel("Voltaje del condensador (Vc)")
 
-ax1 = ax.twinx()
+fig, corriente = plt.subplots()
 color = 'tab:red'
-ax1.plot(Tiempo,ICs, color = color)
-ax1.set_ylabel("corriente de el condensador (A)", color=color)
-ax1.tick_params(axis='y', labelcolor = color)
+corriente.plot(Tiempo,ICs, color = color)
+corriente.set_ylabel("corriente de el condensador (A)")
+corriente.set_xlabel("Tiempo(s)")
+corriente.set_title('Curva de Tension', loc = "left", fontdict = {'fontsize':14, 'fontweight':'bold', 'color':color})
 
-
-fig.tight_layout()
 plt.savefig('Curva_De_Carga_C.png')
 plt.show()
